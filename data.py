@@ -17,7 +17,7 @@ PROJECTS = [
     {   
         "id": "proj_1",
         "name": "Todo App",
-        "desc": (
+        "description": (
              "A web application for managing tasks, built with Flask and SQLAlchemy.\n\n"
              "Technologies used: Python, Flask, SQLAlchemy, HTML, CSS.\n"
         ),
@@ -27,7 +27,7 @@ PROJECTS = [
     {
         "id": "proj_2",
         "name": "Logo Generator",
-        "desc": (
+        "description": (
              "A web application that generates logos based on user input, built with FastAPI and Jinja2.\n\n"
              "Technologies used: Python, FastAPI, Jinja2, HTML, CSS.\n"
         ),
@@ -37,7 +37,7 @@ PROJECTS = [
     {    
         "id": "proj_3",
         "name": "notes-app",
-        "desc": (
+        "description": (
              "A personal portfolio website showcasing my projects and skills, built with FastAPI.\n\n"
              "Technologies used: Python, FastAPI, Postgres.\n"
         ),

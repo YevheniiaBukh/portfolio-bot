@@ -31,26 +31,25 @@ async def cb_about_me(callback: CallbackQuery):
     
 @router.callback_query(F.data == "skills")
 async def cb_skills(callback: CallbackQuery):
-    skills_text = "Skills:\n\n" + "\n".join(f"- {skill}" for skill in DEVELOPER["skills"])
-    text = f"Skills:\n\n{skills_text}"
+    text = "Skills:\n\n" + "\n".join(f"- {skill}" for skill in DEVELOPER["skills"])
     await callback.message.edit_text(text, reply_markup=back_button())
     await callback.answer()
-    
-@router.callback_query(F.data == "portfolio")
-async def cb_portfolio(callback: CallbackQuery):
-    await callback.message.edit_text("Portfolio:\nChoose a project to learn more:",
+
+@router.callback_query(F.data == "projects")
+async def cb_projects(callback: CallbackQuery):
+    await callback.message.edit_text("Projects:\nChoose a project to learn more:",
           reply_markup=projects_menu())
     await callback.answer()
     
 @router.callback_query(F.data.startswith("project_"))
 async def cb_project(callback: CallbackQuery):
-    project = next((p for p in PROJECTS if p["id"] == callback.data), None)
+    project_id = callback.data.removeprefix("project_")
+    project = next((p for p in PROJECTS if p["id"] == project_id), None)
     if project:
-        await callback.message.edit_text(
-            f"{project['name']}\n\n{project['description']}",
-              reply_markup=back_button())
+        await callback.message.edit_text(f"{project['name']}\n\n{project['description']}", reply_markup=back_button())
+    else:
+        await callback.message.edit_text("Project not found", reply_markup=back_button())
     await callback.answer()
-    
     
 @router.callback_query(F.data == "contact")
 async def cb_contact(callback: CallbackQuery):
