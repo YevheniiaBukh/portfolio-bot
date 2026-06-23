@@ -46,7 +46,12 @@ async def cb_project(callback: CallbackQuery):
     project_id = callback.data.removeprefix("project_")
     project = next((p for p in PROJECTS if p["id"] == project_id), None)
     if project:
-        await callback.message.edit_text(f"{project['name']}\n\n{project['description']}", reply_markup=back_button())
+        text = (
+            f"{project['name']}\n\n"
+            f"{project['description']}\n\n"
+            f"GitHub: {project['github']}"
+        )
+        await callback.message.edit_text(text, reply_markup=back_button())
     else:
         await callback.message.edit_text("Project not found", reply_markup=back_button())
     await callback.answer()
